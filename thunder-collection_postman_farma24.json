@@ -1,0 +1,195 @@
+{
+    "info": {
+        "_postman_id": "91d9ba20-0ab3-4c78-b24a-d9069727161a",
+        "name": "Far24Back",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "logginUser",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:8080/usuarios/login",
+                    "path": [
+                        "usuarios",
+                        "login"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"nombre\":\"abelardo2\",\n  \"password\":\"1234\"\n}\n"
+                }
+            }
+        },
+        {
+            "name": "postUser",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:8080/usuarios/",
+                    "path": [
+                        "usuarios"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"username\":\"abelardo3\",\n  \"password\":\"1234\",\n  \"email\":\"emilianofernandezmilki@gmail.com\",\n  \"rol\": \"admin\"\n}"
+                }
+            }
+        },
+        {
+            "name": "getProductos",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8080/productos/",
+                    "path": [
+                        "productos"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                }
+            }
+        },
+        {
+            "name": "postProducto",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:8080/productos/",
+                    "path": [
+                        "productos"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n    \"nombre\": \"Amoxicilina\",\n    \"descuento\": 0,\n    \"presentacion\": \"Cápsulas\",\n    \"concentracion\": \"500 mg\",\n    \"precio\": 300,\n    \"stock\": 498,\n    \"laboratorio\": \"Laboratorios Genéricos S.A.\",\n    \"fecha_vencimiento\": \"2025-11-15\",\n    \"necesita_receta\": true,\n    \"imagen\": \"https://medisol.com.ar/wp-content/uploads/2023/10/medisol-amoxol-500-mg-comprimidos-recubiertos-10.jpg\",\n    \"descripcion\": \"Antibiótico utilizado para tratar infecciones bacterianas.\",\n    \"contraindicaciones\": \"No usar en caso de alergia a la penicilina o a cualquiera de los excipientes.\"\n  }"
+                }
+            }
+        },
+        {
+            "name": "patchProducto",
+            "request": {
+                "method": "PATCH",
+                "url": {
+                    "raw": "http://localhost:8080/productos/update/6860a1532f88a5dec675545b",
+                    "path": [
+                        "productos",
+                        "update",
+                        "6860a1532f88a5dec675545b"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\"nombre\" : \"milonga\"}"
+                }
+            }
+        },
+        {
+            "name": "postProducto Error",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:8080/productos/",
+                    "path": [
+                        "productos"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n    \"nombre\": 200,\n    \"descuento\": 0,\n    \"presentacion\": \"Cápsulas\",\n    \"concentracion\": \"500 mg\",\n    \"precio\": \"300\",\n    \"stock\": 498,\n    \"laboratorio\": \"Laboratorios Genéricos S.A.\",\n    \"fecha_vencimiento\": 20251678,\n    \"necesita_receta\": true,\n    \"imagen\": \"https://medisol.com.ar/wp-content/uploads/2023/10/medisol-amoxol-500-mg-comprimidos-recubiertos-10.jpg\",\n    \"descripcion\": \"Antibiótico utilizado para tratar infecciones bacterianas.\",\n    \"contraindicaciones\": \"No usar en caso de alergia a la penicilina o a cualquiera de los excipientes.\"\n  }"
+                }
+            }
+        },
+        {
+            "name": "getUsersAll",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8080/usuarios/",
+                    "path": [
+                        "usuarios"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                }
+            }
+        },
+        {
+            "name": "deleteUser",
+            "request": {
+                "method": "DELETE",
+                "url": {
+                    "raw": "http://localhost:8080/usuarios/6862c3c38fe9ab89bd26993c",
+                    "path": [
+                        "usuarios",
+                        "6862c3c38fe9ab89bd26993c"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                }
+            }
+        }
+    ]
+}

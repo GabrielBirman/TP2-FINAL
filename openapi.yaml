@@ -1,0 +1,393 @@
+# OpenAPI 3.0 specification for Productos y Usuarios API
+openapi: 3.0.0
+info:
+  title: API de Productos y Usuarios
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /productos:
+    get:
+      summary: Obtener todos los productos
+      responses:
+        '200':
+          description: Lista de productos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Producto'
+              example:
+                - _id: "685b580cf46accfb6381e2f4"
+                  concentracion: "10 mg"
+                  contraindicaciones: |
+                    No usar en caso de hipersensibilidad a la cetirizina o a cualquiera
+                    de los excipientes.
+                  descripcion: |
+                    Antihistamínico utilizado para aliviar síntomas de alergia como
+                    estornudos, picazón y secreción nasal.
+                  descuento: 0.1
+                  fecha_vencimiento: "2026-12-31"
+                  imagen: "https://www.lasanteca.com/userfiles/2018/12/CETIRIZINA-10MG-CAJA-POR-10-TABLETAS-CON-BLISTER.jpg"
+                  laboratorio: "Laboratorio Farmacéutico S.A."
+                  necesita_receta: false
+                  nombre: "Cetirizina"
+                  precio: 300
+                  presentacion: "Tabletas"
+                  stock: 362
+    post:
+      summary: Crear un nuevo producto
+      requestBody:
+        description: Datos del producto a crear
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductoInput'
+            example:
+                concentracion: "10 mg"
+                contraindicaciones: |
+                  No usar en caso de hipersensibilidad a la cetirizina o a cualquiera
+                  de los excipientes.
+                descripcion: |
+                  Antihistamínico utilizado para aliviar síntomas de alergia como
+                  estornudos, picazón y secreción nasal.
+                descuento: 0.1
+                fecha_vencimiento: "2026-12-31"
+                imagen: "https://www.lasanteca.com/userfiles/2018/12/CETIRIZINA-10MG-CAJA-POR-10-TABLETAS-CON-BLISTER.jpg"
+                laboratorio: "Laboratorio Farmacéutico S.A."
+                necesita_receta: false
+                nombre: "Cetirizina"
+                precio: 300
+                presentacion: "Tabletas"
+                stock: 362
+      responses:
+        '201':
+          description: Producto creado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Producto'
+              example:
+                concentracion: "10 mg"
+                contraindicaciones: |
+                  No usar en caso de hipersensibilidad a la cetirizina o a cualquiera
+                  de los excipientes.
+                descripcion: |
+                  Antihistamínico utilizado para aliviar síntomas de alergia como
+                  estornudos, picazón y secreción nasal.
+                descuento: 0.1
+                fecha_vencimiento: "2026-12-31"
+                imagen: "https://www.lasanteca.com/userfiles/2018/12/CETIRIZINA-10MG-CAJA-POR-10-TABLETAS-CON-BLISTER.jpg"
+                laboratorio: "Laboratorio Farmacéutico S.A."
+                necesita_receta: false
+                nombre: "Cetirizina"
+                precio: 300
+                presentacion: "Tabletas"
+                stock: 362
+  /productos/update/all/{id}:
+    put:
+      summary: Reemplazar un producto existente
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID del producto
+      requestBody:
+        description: Datos completos del producto
+        required: true
+        content:
+          application/json:
+            schema:
+             schema:
+            $ref: '#/components/schemas/Producto'
+      responses:
+        '200':
+          description: Producto actualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Producto'
+  /productos/update/{id}:
+    patch:
+      summary: Actualizar parcialmente un producto
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID del producto
+      requestBody:
+        description: Campos del producto a actualizar
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              nombre: string
+              precio: number
+      responses:
+        '200':
+          description: Producto actualizado parcialmente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Producto'
+  /productos/{id}:
+    delete:
+      summary: Eliminar un producto
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID del producto
+      responses:
+        '200':
+          description: Producto eliminado correctamente
+  /usuarios/login:
+    post:
+      summary: Inicio de sesión de usuario
+      requestBody:
+        description: Credenciales de usuario
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+            example:
+              username: "Gonzalo"
+              password: "tu_password"
+      responses:
+        '200':
+          description: Usuario autenticado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+              example:
+                _id: "68616a96e639df678e03f5ba"
+                username: "Gonzalo"
+                email: "rhalaguion2@gmail.com"
+                password: "$2b$10$tDmjZACvGR.UQsvIpHEkGezD/b5y/KLOJxhGA7Batj.JOdjZNrn5O"
+  /usuarios:
+    get:
+      summary: Obtener todos los usuarios
+      responses:
+        '200':
+          description: Lista de usuarios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Usuario'
+              example:
+                - _id: "68616a96e639df678e03f5ba"
+                  username: "Gonzalo"
+                  email: "rhalaguion2@gmail.com"
+                  password: "$2b$10$tDmjZACvGR.UQsvIpHEkGezD/b5y/KLOJxhGA7Batj.JOdjZNrn5O"
+    post:
+      summary: Crear un nuevo usuario
+      requestBody:
+        description: Datos del usuario a crear
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsuarioInput'
+            example:
+              username: "Gonzalo"
+              email: "rhalaguion2@gmail.com"
+              password: "tu_password"
+      responses:
+        '201':
+          description: Usuario creado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+              example:
+                _id: "68616a96e639df678e03f5ba"
+                nombre: "Gonzalo"
+                email: "rhalaguion2@gmail.com"
+                password: "$2b$10$tDmjZACvGR.UQsvIpHEkGezD/b5y/KLOJxhGA7Batj.JOdjZNrn5O"
+                rol: "cliente"
+  # Rutas de actualización y eliminación de usuarios...
+  /usuarios/update/all/{id}:
+    put:
+      summary: Reemplazar un usuario existente
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID del usuario
+      requestBody:
+        description: Datos completos del usuario
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsuarioInput'
+      responses:
+        '200':
+          description: Usuario actualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+  /usuarios/update/{id}:
+    patch:
+      summary: Actualizar parcialmente un usuario
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID del usuario
+      requestBody:
+        description: Campos del usuario a actualizar
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuario' 
+      responses:
+        '200':
+          description: Usuario actualizado parcialmente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+  /usuarios/{id}:
+    delete:
+      summary: Eliminar un usuario
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID del usuario
+      responses:
+        '200':
+          description: Usuario eliminado correctamente
+components:
+  schemas:
+    Producto:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: "685b580cf46accfb6381e2f4"
+        concentracion:
+          type: string
+          example: "10 mg"
+        contraindicaciones:
+          type: string
+        descripcion:
+          type: string
+        descuento:
+          type: number
+        fecha_vencimiento:
+          type: string
+          format: date
+        imagen:
+          type: string
+          format: uri
+        laboratorio:
+          type: string
+        necesita_receta:
+          type: boolean
+        nombre:
+          type: string
+        precio:
+          type: number
+        presentacion:
+          type: string
+        stock:
+          type: integer
+      example:
+        _id: "685b580cf46accfb6381e2f4"
+        concentracion: "10 mg"
+        contraindicaciones: "No usar en caso de hipersensibilidad a la cetirizina o a cualquiera de los excipientes."
+        descripcion: "Antihistamínico utilizado para aliviar síntomas de alergia como estornudos, picazón y secreción nasal."
+        descuento: 0.1
+        fecha_vencimiento: "2026-12-31"
+        imagen: "https://www.lasanteca.com/userfiles/2018/12/CETIRIZINA-10MG-CAJA-POR-10-TABLETAS-CON-BLISTER.jpg"
+        laboratorio: "Laboratorio Farmacéutico S.A."
+        necesita_receta: false
+        nombre: "Cetirizina"
+        precio: 300
+        presentacion: "Tabletas"
+        stock: 362
+    ProductoInput:
+      type: object
+      properties:
+        nombre:
+          type: string
+        precio:
+          type: number
+      required:
+      - nombre
+      - descuento
+      - presentacion
+      - concentracion
+      - precio
+      - stock
+      - laboratorio
+      - fecha_vencimiento
+      - necesita_receta
+      - imagen
+      - descripcion
+      - contraindicaciones
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      required:
+        - username
+        - password
+    Usuario:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: "68616a96e639df678e03f5ba"
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+      example:
+        _id: "68616a96e639df678e03f5ba"
+        username: "Gonzalo"
+        email: "rhalaguion2@gmail.com"
+        password: "$2b$10$tDmjZACvGR.UQsvIpHEkGezD/b5y/KLOJxhGA7Batj.JOdjZNrn5O"
+    UsuarioInput:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+          format: email
+      required:
+        - username
+        - password
+        - email
